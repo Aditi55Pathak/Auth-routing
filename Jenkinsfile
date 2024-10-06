@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        NODE_HOME = '/usr/local/bin/node' 
-        PATH = "$NODE_HOME/bin:$PATH"
+        // Assuming Node.js and npm are in /usr/local/bin, no need to specify NODE_HOME/bin/node
+        PATH = "/usr/local/bin:$PATH"
     }
 
     stages {
@@ -12,6 +12,14 @@ pipeline {
                 script {
                     git credentialsId: 'github-pat', url: 'https://github.com/Aditi55Pathak/Auth-routing.git', branch: 'master'
                 }
+            }
+        }
+
+        stage('Verify Node and NPM') {
+            steps {
+                // Ensure Node.js and npm are installed and accessible
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
 
