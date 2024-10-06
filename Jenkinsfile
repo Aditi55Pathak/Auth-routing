@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/your-username/your-react-project.git', branch: 'main'
+                script {
+                    git credentialsId: 'github-pat', url: 'https://github.com/Aditi55Pathak/Auth-routing.git', branch: 'master'
+                }
             }
         }
 
